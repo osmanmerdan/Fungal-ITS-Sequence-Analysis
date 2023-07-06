@@ -2,8 +2,8 @@
 Bioinformatic scripts to analyze ITS (Internal transcribed spacer) sequences to identify Mucorales order fungi. 
 
 **Files:**
-- mucorales-turkey.sh : main bash script to analyze FASTA sequences
-- blast_result_parser.py: Python 3 script to filter out BLAST hits
+- _its_pipeline.sh_: main bash script to analyze FASTA sequences
+- _blast_result_parser.py_: Python 3 script to filter out BLAST hits
 
 **Analysis steps:**
 1. Concatenating fasta files
