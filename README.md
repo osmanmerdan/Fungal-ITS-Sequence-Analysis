@@ -6,11 +6,8 @@ Bioinformatic scripts to analyze ITS (Internal transcribed spacer) sequences to 
 - _blast_result_parser.py_: Python 3 script to filter out BLAST hits
 
 **Analysis steps:**
-1. Concatenating fasta files
-2. Gathering basic statistics
-3. Building BLAST database
-4. Parsing BLAST output
-5. Creating multiple sequence alignment and phylogenetic ML tree
+
+![‎Untitled ‎1](https://github.com/osmanmerdan/Fungal-ITS-Sequence-Analysis/assets/91588759/8ea6281f-f1f6-41e9-9cac-60d98a365ac9)
 
 _!!!WARNING!!!_
 
