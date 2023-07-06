@@ -1,4 +1,4 @@
-# Mucorales Species Identification with ITS Region Sequencing Using BLAST
+# Fungal Species Identification with ITS Sequencing
 Bioinformatic scripts to analyze ITS (Internal transcribed spacer) sequences to identify Mucorales order fungi. 
 
 **Files:**
