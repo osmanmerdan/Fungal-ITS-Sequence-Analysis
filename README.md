@@ -9,8 +9,13 @@ Analysis steps:
 5. Creating multiple sequence alignment and phylogenetic ML tree
 
 _!!!WARNING!!!_
+
 This pipeline assumes that seqs file names and seq headers are same.
+
 For example; sample file name = ERR789.fasta sample fasta header = >ERR789
+
 All individual seq files are stored in the "./seqs" directory
+
 _Required programs_:
+
 seqkit , blast, MAFFT , and iqtree2 in the iqtree directory
