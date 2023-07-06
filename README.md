@@ -10,14 +10,11 @@ Bioinformatic scripts to analyze ITS (Internal transcribed spacer) sequences to 
 ![Untitled-2](https://github.com/osmanmerdan/Fungal-ITS-Sequence-Analysis/assets/91588759/c6114cdf-8b3a-4132-9a28-b19b5950a791)
 
 
-_!!!WARNING!!!_
+**Notes:**
 
-This pipeline assumes that seqs file names and seq headers are same.
+- This pipeline assumes that seqs file names and seq headers are same.
+- For example, Sample file name: ERR789.fasta, Sample fasta header: >ERR789
+- All individual seq files are stored in the "./seqs" directory
 
-For example; sample file name = ERR789.fasta sample fasta header = >ERR789
-
-All individual seq files are stored in the "./seqs" directory
-
-_Required programs_:
-
-seqkit , blast, MAFFT , and iqtree2 in the iqtree directory
+**Used Command Line Programs:**
+- Seqkit, Blast, MAFFT, and Iqtree2
