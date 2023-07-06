@@ -7,7 +7,8 @@ Bioinformatic scripts to analyze ITS (Internal transcribed spacer) sequences to 
 
 **Analysis steps:**
 
-![‎Untitled ‎1](https://github.com/osmanmerdan/Fungal-ITS-Sequence-Analysis/assets/91588759/8ea6281f-f1f6-41e9-9cac-60d98a365ac9)
+![Untitled-2](https://github.com/osmanmerdan/Fungal-ITS-Sequence-Analysis/assets/91588759/c6114cdf-8b3a-4132-9a28-b19b5950a791)
+
 
 _!!!WARNING!!!_
 
