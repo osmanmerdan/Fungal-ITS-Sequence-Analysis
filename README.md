@@ -1,7 +1,11 @@
 # Mucorales Species Identification
 Bioinformatic scripts to analyze ITS (Internal transcribed spacer) sequences to identify Mucorales order fungi. 
 
-Analysis steps:
+**Files:**
+- mucorales-turkey.sh : main bash script to analyze FASTA sequences
+- blast_result_parser.py: Python 3 script to filter out BLAST hits
+
+**Analysis steps:**
 1. Concatenating fasta files
 2. Gathering basic statistics
 3. Building BLAST database
