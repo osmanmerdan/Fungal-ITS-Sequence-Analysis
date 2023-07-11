@@ -20,3 +20,5 @@ Bioinformatic scripts to analyze ITS (Internal transcribed spacer) sequences to 
 
 **Used Command Line Programs:**
 - Seqkit, Blast, MAFFT, and Iqtree2
+
+Many thanks to Esra Merdan for creating the illustration for this project. 
