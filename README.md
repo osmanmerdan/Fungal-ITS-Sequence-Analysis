@@ -1,3 +1,5 @@
+![Mushrooms](https://github.com/osmanmerdan/Fungal-ITS-Sequence-Analysis/assets/91588759/cc61b58d-7b5b-4ff0-ada0-5694c73331c8)
+
 # Fungal Species Identification with ITS Sequencing
 Bioinformatic scripts to analyze ITS (Internal transcribed spacer) sequences to identify Mucorales order fungi. 
 
@@ -12,7 +14,7 @@ Bioinformatic scripts to analyze ITS (Internal transcribed spacer) sequences to 
 
 **Notes:**
 
-- This pipeline assumes that seqs file names and seq headers are same.
+- This pipeline assumes that seqs file names and seq headers are the same.
 - For example, Sample file name: ERR789.fasta, Sample fasta header: >ERR789
 - All individual seq files are stored in the "./seqs" directory
 
