@@ -1,4 +1,5 @@
-![Mushrooms](https://github.com/osmanmerdan/Fungal-ITS-Sequence-Analysis/assets/91588759/cc61b58d-7b5b-4ff0-ada0-5694c73331c8)
+
+![Mushrooms](https://github.com/osmanmerdan/Fungal-ITS-Sequence-Analysis/assets/91588759/81575b33-c67c-45f3-8ff9-1fca9a98e9a0)
 
 # Fungal Species Identification with ITS Sequencing
 Bioinformatic scripts to analyze ITS (Internal transcribed spacer) sequences to identify Mucorales order fungi. 
