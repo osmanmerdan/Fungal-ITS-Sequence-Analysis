@@ -60,26 +60,25 @@ echo "========================="
 # -------------------------------------------------------------------------------------------------------------------------
 read -rp "Do you want to build or update the blast database (y/n): " choice
 if [[ "$choice" == "y" || "$choice" == "Y" ]]; then
-    echo "Continuing..."
-else
-    echo "Exiting."
-    exit 0
-fi
-# Download latest refseq Fungal ITS Sequences
-wget https://ftp.ncbi.nlm.nih.gov/refseq/TargetedLoci/Fungi/fungi.ITS.fna.gz
-gunzip fungi.ITS.fna.gz
-mkdir -p blastdb
-makeblastdb\
- -input_type fasta\
- -dbtype nucl\
- -parse_seqids\
- -in fungi.ITS.fna\
- -out blastdb/ITS_Database_2023
-# To get info about database
-echo "**** Database Info ****" 
-blastdbcmd -db ./blastdb/ITS_Database_2023 -info
-echo "========================="
+    echo "Building/Updating blast database"
 
+# Download latest refseq Fungal ITS Sequences
+    wget https://ftp.ncbi.nlm.nih.gov/refseq/TargetedLoci/Fungi/fungi.ITS.fna.gz
+    gunzip fungi.ITS.fna.gz
+    mkdir -p blastdb
+    makeblastdb\
+     -input_type fasta\
+     -dbtype nucl\
+     -parse_seqids\
+     -in fungi.ITS.fna\
+     -out blastdb/ITS_Database_2023
+# To get info about database
+    echo "**** Database Info ****" 
+    blastdbcmd -db ./blastdb/ITS_Database_2023 -info
+    echo "========================="
+else
+    echo "Continuing..."
+fi
 read -rp "Do you want to continue blast analysis(y/n): " choice
 if [[ "$choice" == "y" || "$choice" == "Y" ]]; then
     echo "Continuing..."
