@@ -240,7 +240,7 @@ sleep 5
 mkdir -p ./trees
 for i in ./alignments/*
 do
-iqtree/iqtree2 -s "$i" -T 6 -B 1000 -m MFP --prefix ./trees/"$(basename "$i")"
+iqtree/iqtree2 -s "$i" -T AUTO -B 1000 -m MFP --prefix ./trees/"$(basename "$i")"
 done
 echo "****** Phylogenetic tree construction with IQTree2 finished at $(date) ******"
 sleep 5
