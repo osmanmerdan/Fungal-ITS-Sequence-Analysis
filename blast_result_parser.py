@@ -24,17 +24,66 @@ dat.columns = ['qacc', 'saccver', 'stitle', 'qlen', 'slen', 'length', 'qstart', 
 dat.loc[:,'ssciname'] = dat.loc[:,'stitle'].str.split().str[:2].str.join(' ')
 dat=dat.reindex(columns=['qacc', 'saccver','ssciname', 'stitle', 'qlen', 'slen', 'length', 'qstart', 'qend',
                 'sstart', 'send', 'qcovs', 'pident', 'nident', 'mismatch', 'gaps', 'bitscore', 'evalue'])
-# 2. Rule ---------------------------------------------------------------------------------------------
-# Any hit with pident>=96 and qcovs>=95 and evalue of 0.00 is identified as species level identification
-# There may be multiple hits because of multiple hsp's.
-# Thats why duplicate occurences of qacc is discarded and best hits are saved as R1.
-R1 = dat.loc[
-    (dat['pident']>=96) & (dat['qcovs']>=95) & (dat['evalue']==0),:
-    ].drop_duplicates(subset='qacc', keep='first')
-R1.loc[:,'idlevel'] = 'species'
-R1.loc[:,'idgenus'] = R1.loc[:,'ssciname'].str.split().str[0]
-R1.loc[:,'idspecies'] = R1.loc[:,'ssciname']
+# 2. Rule 1 ---------------------------------------------------------------------------------------------
+# Any hit with pident>=96 and qcovs>=95 and evalue of 0.0 is identified as species level identification
+# Normally we expect to see only one HSP passing these filters but some exceptions occur
+# Take a copy of the original dataframe
+R1 = dat.copy()
 
+# Filter for Rule 1 criteria
+R1 = R1.loc[(R1['pident']>=96) & (R1['qcovs']>=95) & (R1['evalue']==0), : ]
+R1['idlevel']=''
+R1['idgenus']=''
+R1['idspecies']=''
+print(f"******************************************************")
+# If there is multiple HSP; qacc and species values must match in different rows
+# Drop duplicate occurences (rows with same qacc and species names)
+subset_cols1 = ['qacc', 'ssciname']
+Multiple_HSP = R1.loc[R1.duplicated(subset=subset_cols1), ['qacc']]['qacc']
+
+if len(Multiple_HSP)>0:
+    print(f">> WARNING -- Samples with multiple HSP for same species: ")
+    for i in Multiple_HSP:
+        print(i)
+
+R1.drop_duplicates(subset=subset_cols1, keep='first', inplace=True)
+
+# Some mucorales species names in database have identical reference sequences
+# Thats why hits have same 'length', 'slen', 'start', 'end', 'nident' values for those entries.
+# Like Rhizopus azygosporus/ microsporus
+# For those samples take the first hit drop duplicates
+subset_cols2 = ['qacc', 'length', 'slen', 'qstart', 'qend', 'nident', 'qcovs']
+Same_Alignment_Multiple_Species = R1.loc[R1.duplicated(subset=subset_cols2), ['qacc']]['qacc']
+
+if len(Same_Alignment_Multiple_Species)>0:
+    print(f">> WARNING -- Samples having same alignment with more than one species: ")
+    print(f"In the parsed_blast_output file only one of those species names will be reported.")
+    for i in Same_Alignment_Multiple_Species.drop_duplicates():
+        print(i)
+
+R1.drop_duplicates(subset=subset_cols2, keep='first', inplace=True)
+
+# If there are multiple hits for different species which are passing filters
+# Those results carry same qacc but other columns vary significantly
+# Those samples must be tagged as unidentified, then drop duplicates which has same qacc values
+subset_cols3 = ['qacc']
+Multiple_Hits_Passing_Filters = R1.loc[R1.duplicated(subset=subset_cols3), ['qacc']]['qacc']
+
+if len(Multiple_Hits_Passing_Filters)>0:
+    print(f">> WARNING -- Samples having multiple species hits passing the filters: ")
+    print(f"In the parsed_blast_output file only the best hit (according to pident and qcovs) will be reported")
+    for i in Multiple_Hits_Passing_Filters.drop_duplicates():
+        print(i)
+
+#R1.loc[R1.duplicated(subset=subset_cols3), ['idspecies', 'idgenus', 'idlevel']] = 'unidentified'
+
+# Name not-unidentified samples
+R1.loc[R1['idgenus']!='unidentified','idgenus'] = R1.loc[R1['idgenus']!='unidentified','ssciname'].str.split().str[0]
+R1.loc[R1['idgenus']!='unidentified','idspecies'] = R1.loc[R1['idgenus']!='unidentified','ssciname']
+R1.loc[R1['idgenus']!='unidentified','idlevel'] ='species' 
+
+
+R1=R1.drop_duplicates(subset= subset_cols3, keep='first')
 
 # 3. Rule 2 ---------------------------------------------------------------------------------------------
 # Remaining hits are considered unidentified.

@@ -191,12 +191,16 @@ do
  -v x="$i"\
  '$20==x {print "./seqs/"$1".fasta"}'\
  ./blast-results/parsed_blast_result.tsv | sort | uniq > temp2
- 
+
+ #'{split($3, words, " "); if (words[1] == x) print "./seqs/"$1".fasta"}'\
+
  awk -F '\t'\
  -v x="$i"\
  '$20==x {print "./refs/"$2}'\
-  ./blast-results/parsed_blast_result.tsv | sort | uniq >> temp2
- 
+ ./blast-results/parsed_blast_result.tsv | sort | uniq >> temp2
+
+#'{split($3, words, " "); if (words[1] == x) print "./refs/"$2}'\
+
  xargs cat < temp2 > ./genus-groups/"$i"
 done < blast-results/unique_genus_names.txt
 
@@ -239,8 +243,17 @@ echo "****** Phylogenetic tree construction with IQTree2 started at $(date) ****
 sleep 5
 mkdir -p ./trees
 for i in ./alignments/*
-do
-iqtree/iqtree2 -s "$i" -T AUTO -B 1000 -m MFP --prefix ./trees/"$(basename "$i")"
+    do
+    echo "***** Processing $i Alignment File *****"
+    if iqtree/iqtree2 -s "$i" -T 6 -B 1000 -m MFP --prefix ./trees/"$(basename "$i")"; then
+        echo "***** $i Tree File Created *****"
+        sleep 10
+    else
+        echo "***** An error occured while processing $i file *****"
+        sleep 10
+        echo "**** Skipping to next file ****"
+        sleep 5
+    fi
 done
 echo "****** Phylogenetic tree construction with IQTree2 finished at $(date) ******"
 sleep 5
