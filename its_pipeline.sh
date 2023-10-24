@@ -149,7 +149,7 @@ echo "***** BLAST tabular output filtering finished at $(date) *****"
 read -rp "Do you want to create MSA for genus groups and create phylogenetic tree(y/n): " choice
 if [[ "$choice" == "y" || "$choice" == "Y" ]]; then
     echo "Continuing..."
-    
+    # Add your code here for the actions to perform if the user chooses to continue
 else
     echo "Exiting."
     exit 0
