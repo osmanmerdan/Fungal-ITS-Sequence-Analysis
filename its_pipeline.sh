@@ -245,7 +245,7 @@ mkdir -p ./trees
 for i in ./alignments/*
     do
     echo "***** Processing $i Alignment File *****"
-    if iqtree/iqtree2 -s "$i" -T 6 -B 1000 -m MFP --prefix ./trees/"$(basename "$i")"; then
+    if iqtree/iqtree2 -s "$i" -T 6 -B 1000 -m MFP --redo --prefix ./trees/"$(basename "$i")"; then
         echo "***** $i Tree File Created *****"
         sleep 10
     else
