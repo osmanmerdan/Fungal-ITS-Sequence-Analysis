@@ -3,7 +3,6 @@
 
 # Author: Osman Merdan, MD
 # Uludag University Medical School Department of Medical Microbiology 
-# Last Updated : 6 July 2023
 # Bioinformatic analysis pipeline for the project:
 # Retrospective determination of species distribution and antifungal susceptibility of Mucorales order fungi isolated from clinical specimens.
 
